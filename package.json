@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "dev": "ts-node-dev --respawn server/index.ts",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "lint": "eslint .",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
