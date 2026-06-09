@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  ci:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Testing
+        run: npm test
+
+      - name: Building
+        run: npm run build
