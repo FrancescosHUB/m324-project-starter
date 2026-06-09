@@ -1,17 +1,18 @@
-# Use the official Node.js image as the base image
-FROM node:18
+# Stage 1: Lint, Test und Build
+FROM node:20 AS build
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run lint
+RUN npm run test
+RUN npm run build
 
-# Set the working directory inside the container
-WORKDIR ...
-
-# Copy the package.json and package-lock.json files to the container
-COPY ...
-
-# Install the dependencies
-RUN ...
-
-# Copy the source code to the container
-COPY ...
-
-# Start the server when the container starts
-CMD ...
+# Stage 2: Produktion
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=build /app/build ./build
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/client ./client
+COPY --from=build /app/package.json .
+CMD ["node", "build/index.js"]
