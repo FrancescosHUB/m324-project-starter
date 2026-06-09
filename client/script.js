@@ -38,6 +38,12 @@
 
   // Wait until the DOM is loaded before adding event listeners
   document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('darkModeToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+
     // Send a message when the send button is clicked
     document.getElementById('sendButton').addEventListener('click', () => {
       const message = document.getElementById('messageInput').value;

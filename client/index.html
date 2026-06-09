@@ -6,22 +6,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LB1 Chat - M324</title>
+  <script>
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <link rel="stylesheet" href="/style.css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
   <script src="/utils.js"></script>
   <script src="/script.js"></script>
 </head>
 
-<body>
-  <div class="flex justify-center w-full h-screen">
-    <div class="flex flex-col w-full h-full max-w-2xl bg-white md:w-3/4 lg:w-2/4">
-      <div class="px-4 py-4 bg-blue-500 rounded-b">
+<body class="dark:bg-gray-900">
+  <div class="flex justify-center w-full h-screen dark:bg-gray-900">
+    <div class="flex flex-col w-full h-full max-w-2xl bg-white dark:bg-gray-800 md:w-3/4 lg:w-2/4">
+      <div class="flex items-center justify-between px-4 py-4 bg-blue-500 dark:bg-gray-700 rounded-b">
         <p class="text-lg font-bold text-white">LB1 Chat - M324</p>
+        <button id="darkModeToggle" class="text-white hover:text-gray-200 focus:outline-none" title="Toggle dark mode">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
       </div>
       <div class="flex flex-col justify-start flex-grow gap-4 p-4 overflow-y-auto" id="messages"></div>
-      <div class="flex items-center px-4 py-4 bg-gray-100 rounded-t">
+      <div class="flex items-center px-4 py-4 bg-gray-100 dark:bg-gray-700 rounded-t">
         <input id="messageInput" type="text" placeholder="Type a message"
-          class="flex-grow px-4 py-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-300" />
+          class="flex-grow px-4 py-2 border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-cyan-300 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400 dark:border-gray-500" />
         <button class="ml-4 text-cyan-300 hover:text-cyan-400 focus:outline-none" id="sendButton">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
