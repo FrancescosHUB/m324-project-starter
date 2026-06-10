@@ -21,6 +21,7 @@
         break;
       case 'activeUsers':
         activeUsers = message.users;
+        renderActiveUsers();
         break;
       case 'typing':
         typingUsers = message.users;
@@ -45,6 +46,19 @@
       document.getElementById('messageInput').value = '';
     });
   });
+
+  const renderActiveUsers = () => {
+    const container = document.getElementById('activeUsers');
+    if (!container) return;
+    container.innerHTML = activeUsers
+      .map(
+        (user) => `<span class="flex items-center gap-1 text-sm text-gray-700">
+          <span class="inline-block w-2 h-2 rounded-full bg-green-400"></span>
+          <span>${user.name}</span>
+        </span>`,
+      )
+      .join('');
+  };
 
   document.addEventListener('keydown', (event) => {
     // Only send if the typed in key is not a modifier key
