@@ -4,7 +4,7 @@ metadata:
   name: m324-app-ingress
 spec:
   rules:
-    - host: francescod.m324.hackerman.ch
+    - host: m324-app.local
       http:
         paths:
           - path: /
