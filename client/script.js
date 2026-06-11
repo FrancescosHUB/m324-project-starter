@@ -21,6 +21,7 @@
         break;
       case 'activeUsers':
         activeUsers = message.users;
+        renderActiveUsers();
         break;
       case 'typing':
         typingUsers = message.users;
@@ -47,6 +48,19 @@
     });
   });
 
+  const renderActiveUsers = () => {
+    const container = document.getElementById('activeUsers');
+    if (!container) return;
+    container.innerHTML = activeUsers
+      .map(
+        (user) => `<span class="flex items-center gap-1 text-sm text-gray-700">
+          <span class="inline-block w-2 h-2 rounded-full bg-green-400"></span>
+          <span>${user.name}</span>
+        </span>`,
+      )
+      .join('');
+  };
+  
   const renderTypingIndicator = () => {
     const el = document.getElementById('typingIndicator');
     if (!el) return;

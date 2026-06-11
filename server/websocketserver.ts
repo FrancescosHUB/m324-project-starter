@@ -39,7 +39,7 @@ const onClose = (ws: WebSocket) => {
     removeTypingStatus(removedUser[0].id);
     broadcastMessage({
       type: 'activeUsers',
-      users: activeUsers,
+      users: activeUsers.map((user) => ({ id: user.id, name: user.name })),
     });
   }
 };
