@@ -24,6 +24,7 @@
         break;
       case 'typing':
         typingUsers = message.users;
+        renderTypingIndicator();
         break;
       default:
         break;
@@ -45,6 +46,19 @@
       document.getElementById('messageInput').value = '';
     });
   });
+
+  const renderTypingIndicator = () => {
+    const el = document.getElementById('typingIndicator');
+    if (!el) return;
+    if (typingUsers.length === 0) {
+      el.textContent = '';
+    } else if (typingUsers.length === 1) {
+      el.textContent = `${typingUsers[0].name} schreibt gerade…`;
+    } else {
+      const names = typingUsers.map((u) => u.name).join(', ');
+      el.textContent = `${names} schreiben gerade…`;
+    }
+  };
 
   document.addEventListener('keydown', (event) => {
     // Only send if the typed in key is not a modifier key
